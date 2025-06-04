@@ -6,7 +6,7 @@
   const ALLOWED_DOMAINS = [
     'your-ghl-subdomain.ghl.com',
     'www.yourcustomdomain.com',
-    'landing.yourdomain.io',
+    'app.gohighlevel.com',
     // etc…
   ];
 
