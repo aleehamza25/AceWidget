@@ -1,4 +1,38 @@
 // widget.js
+// widget.js
+
+(function() {
+  // 1) List every domain (or wildcard) where you allow this widget to run:
+  const ALLOWED_DOMAINS = [
+    'your-ghl-subdomain.ghl.com',
+    'www.yourcustomdomain.com',
+    'landing.yourdomain.io',
+    // etc…
+  ];
+
+  // 2) Grab the current host (e.g. "mysite.com")
+  const host = window.location.hostname.toLowerCase();
+
+  // 3) If not in the whitelist, do nothing:
+  if (!ALLOWED_DOMAINS.some(d => {
+        // if you want to allow subdomains, you can do e.g. d.endsWith(window.location.hostname)
+        return host === d.toLowerCase();
+      })) 
+  {
+    console.warn(
+      '[AccessibilityWidget] This domain is not authorized to use widget.js: ' + host
+    );
+    return; // stop execution immediately
+  }
+
+  // …the rest of your widget’s code goes HERE (in an IIFE) …
+  // (inject CSS, create toggle button, etc.)
+  // (exactly like the IIFE from before, but wrapped below this domain check)
+
+  // ──────────────────────────────────────────────────
+  // Your existing IIFE code (injected CSS/HTML, event listeners, etc.)
+  // ──────────────────────────────────────────────────
+
 (function() {
   // 1️⃣ Wait for DOM to be ready
   function onReady(fn) {
@@ -297,3 +331,6 @@
     });
   });
 })();
+
+
+})(); // end IIFE
