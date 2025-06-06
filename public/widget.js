@@ -150,7 +150,7 @@
       }
 
       body.large-font * {
-        font-size: 1.1em !important;
+        font-size: 1.06em !important;
       }
     `;
 
