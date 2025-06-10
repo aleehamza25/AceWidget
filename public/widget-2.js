@@ -118,17 +118,7 @@
         color: yellow !important;
         border-color: yellow !important;
       }
-      
-      .high-contrast h1,
-	  .high-contrast h2,
-	  .high-contrast h3,
-      .high-contrast h4,
-      .high-contrast h5,
-      .high-contrast h6 {
-        color: yellow   !important;
-        background-color: black !important;
-        border-color: yellow !important;
-      }
+   
 
 
       .dyslexia-font * {
@@ -335,27 +325,41 @@
       }
     }
 
-    // 1️⃣5️⃣ “Reset” button
-    function resetAccessibility() {
-      isLargeText = false;
-      isHighContrast = false;
-      isDyslexiaFont = false;
-      isMagnifierActive = false;
-      isSpeechActive = false;
+   function resetAccessibility() {
+  // Reset all states
+  isLargeText = false;
+  isHighContrast = false;
+  isDyslexiaFont = false;
+  isMagnifierActive = false;
+  isSpeechActive = false;
+  isAnimationsPaused = false;
 
-      document.body.classList.remove('large-font', 'high-contrast', 'dyslexia-font');
-      magnifierBar.style.display = 'none';
-      magnifierContent.innerHTML = '';
-      document.removeEventListener('mousemove', moveMagnifier);
-      document.removeEventListener('click', speakText);
-      window.speechSynthesis.cancel();
+  // Remove all added classes from body
+  document.body.classList.remove('large-font', 'high-contrast', 'dyslexia-font', 'pause-animations');
 
-      // Un-highlight all buttons
-      var allButtons = widget.querySelectorAll('.accessibility-button');
-      allButtons.forEach(function(b) {
-        b.classList.remove('active');
-      });
-    }
+  // Deactivate all buttons
+  document.querySelectorAll('.accessibility-button.active').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  // Hide magnifier if visible
+  magnifierBar.style.display = 'none';
+  magnifierContent.innerHTML = '';
+  document.removeEventListener('mousemove', moveMagnifier);
+
+  // Restore previously overridden styles
+  document.querySelectorAll('*').forEach(el => {
+    if (el._oldColor) el.style.setProperty('color', el._oldColor);
+    else el.style.removeProperty('color');
+
+    if (el._oldBg) el.style.setProperty('background-color', el._oldBg);
+    else el.style.removeProperty('background-color');
+
+    if (el._oldBorder) el.style.setProperty('border-color', el._oldBorder);
+    else el.style.removeProperty('border-color');
+  });
+}
+
 
     // 1️⃣6️⃣ Delegate clicks on each button to its handler
 // 1️⃣6️⃣ Delegate clicks on each button to its handler
