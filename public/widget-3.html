@@ -17,7 +17,7 @@
       html { font-size:16px; }
       #accessibility-toggle-btn {
         position:fixed; bottom:30px; right:30px;
-        width:60px; height:60px; background:#3498db;
+        width:60px; height:60px; background:#62b6aa;
         color:#fff; border:none; border-radius:50%;
         font-size:24px; display:flex; align-items:center; justify-content:center;
         cursor:pointer; z-index:10001; box-shadow:0 4px 12px rgba(0,0,0,0.3);
@@ -32,7 +32,7 @@
         width: 300px;
         max-height: 80vh;
         overflow-y: auto;
-        background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+        background: linear-gradient(135deg, #62b6aa, #bbdefb);
         padding: 16px;
         border-radius: 12px;
         box-shadow: 0 6px 20px rgba(0,0,0,0.2);
@@ -56,7 +56,7 @@
       }
       .accessibility-button {
         display:flex; align-items:center; gap:4px; padding:8px;
-        background:#fff; border:1px solid #90caf9;
+        background:#fff; border:1px solid #62b6aa;
         border-radius:6px; cursor:pointer; font-size:14px;
         transition:background .2s;
       }
@@ -88,7 +88,7 @@
       .dyslexia-font .fas { font-family:'Font Awesome 6 Free'!important; font-weight:900!important; }
       .pause-animations * { animation:none!important; transition:none!important; }
       .dull-colors * { filter:grayscale(30%) brightness(90%)!important; }
-      .motor-impaired { cursor:url('https://yourdomain.com/large-cursor.png'),auto!important; }
+      .motor-impaired * { cursor:url('https://ace-widget.vercel.app/cursor_64x64.png') 0 0 ,auto!important; }
       .color-blind * { filter:url(#color-blindness-filter)!important; }
 
       /* Font size button styles */
@@ -109,15 +109,20 @@
       .font-size-button.active { background: #1565c0; color: #fff; border-color: #0d47a1; }
 
       /* Font size classes */
-      .font-small * { font-size: 14px !important; }
-      .font-medium * { font-size: 16px !important; }
-      .font-large * { font-size: 20px !important; }
-      .font-xl * { font-size: 24px !important; }
+      .font-small * { font-size: 1em !important; }
+      .font-medium * { font-size: 1.01em !important; }
+      .font-large * { font-size: 1.02em !important; }
+      .font-xl * { font-size: 1.03em !important; }
 
       /* Big cursor styles */
-      .big-cursor {
-        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="%233498db" stroke-width="2"/><circle cx="16" cy="16" r="2" fill="%233498db"/></svg>') 16 16, auto !important;
-      }
+      
+     
+      .big-cursor, 
+      .big-cursor *
+     {
+  cursor: url('https://ace-widget.vercel.app/cursor_64x64.png') 0 0, auto !important;
+}
+
     `;
     const style = document.createElement('style'); style.textContent = css;
     document.head.appendChild(style);
